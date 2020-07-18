@@ -1,0 +1,220 @@
+.main-content {
+    margin-top: 160px;
+    margin-bottom: 40px
+}
+
+.main-content .total-block {
+    background: #3498db;
+    padding: 20px;
+    border-radius: 0
+}
+
+.main-content .global-img {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-right: 16px
+}
+
+.main-content .global-img img {
+    width: 50px;
+    height: 50px
+}
+
+.total-block-top {
+    overflow: hidden
+}
+
+.total-block-top-txt {
+    float: left;
+}
+
+.title_text {
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    margin-bottom: .5rem;
+    opacity: 0.8;
+}
+
+.middle .list-head {
+    padding: 7px 15px;
+    overflow: hidden;
+    height: 60px;
+    box-sizing: border-box;
+    border-bottom: 3px solid #f7f7f7
+}
+
+.middle .block-icon {
+    font-size: 16px;
+    color: #777;
+    line-height: 20px;
+    background: url(../image/block.png) no-repeat;
+    background-size: 20px 20px;
+    padding-left: 24px;
+    margin-top: 13px
+}
+
+.middle .list-right .block-icon {
+    background: url(../image/list.png) no-repeat;
+    background-size: 20px 20px
+}
+
+.middle .viewAll-icon {
+    cursor: pointer;
+    font-weight: 400;
+    color: #3498db;
+    padding: 11px;
+    text-decoration: none
+}
+
+.middle .viewAll-icon:hover {
+    color: #007bff
+}
+
+.list-body {
+    background: #f7f7f7;
+    height: 580px;
+    overflow: scroll
+}
+
+.middle .profile-event {
+    background: #fff;
+    padding: 10px 15px;
+    margin-bottom: 2px;
+    overflow: hidden
+}
+
+.middle .profile-post {
+    background: #fff;
+    padding: 7px 7px 7px 0;
+    margin-bottom: 2px;
+    overflow: hidden
+}
+
+.data-formats {
+    width: 135px;
+    height: 65px;
+    background: gray;
+    margin-right: 10px;
+    padding: 7px 4px 4px
+}
+
+.data-formats div {
+    color: #fff;
+    font-size: 12px;
+    text-align: center
+}
+
+.block-detail span a {
+    color: #3498db
+}
+
+.block-detail .trans-num {
+    color: #3498db
+}
+
+.block-detail div {
+    color: #999
+}
+
+.block-detail {
+    font-size: 13px
+}
+
+.profile-post .data-formats-post {
+    position: relative;
+    width: 83px;
+    height: 71px
+}
+
+.profile-post .data-formats-post img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 43px;
+    height: 43px
+}
+
+.block-detail-post .trans-hash {
+    font-size: 14px;
+    margin-bottom: 3px;
+    margin-top: 4px
+}
+
+.block-detail-post .to-trans-hash {
+    display: inline-block;
+    width: 200px;
+    vertical-align: bottom;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #3498db
+}
+
+.block-detail-post .p-to-p {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 3px
+}
+
+.block-detail-post .p-to-p a {
+    display: inline-block;
+    width: 110px;
+    vertical-align: bottom;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #3498db
+}
+
+.block-detail-post .total-price {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 0
+}
+
+.minerBy {
+    display: inline-block;
+    width: 160px;
+    vertical-align: bottom;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+@media screen and (max-width:575px) {
+    .main-content {
+        margin-top: 138px
+    }
+}
+
+.p_text {
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    margin-bottom: 0rem;
+    opacity: 0.8;
+}
+
+.p_sub_text {
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    margin-bottom: 0rem;
+    opacity: 0.8;
+}
+
+.p_sub_value {
+    color: white;
+    font-size: 12px;
+    margin-bottom: 0rem;
+}
+
+.p_sub_value_1 {
+    color: white;
+    font-size: 16px;
+    margin-bottom: 0rem
+}
+
+.p_title {
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    margin-bottom: .5rem;
+    opacity: 0.8;
+}

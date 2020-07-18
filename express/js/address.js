@@ -1,0 +1,1 @@
+var address={testUrl:"https://explorerapi.sero.cash",productUrl:"http://explorer.api.alpha.sero.cash",}
