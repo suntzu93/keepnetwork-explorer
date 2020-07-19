@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KEEP Explorer</title>
-    <link rel="icon" href="assets/img/logo.png">
+    <title>tBTC Explorer</title>
+    <link rel="icon" href="assets/img/tbtc.png">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/common.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
@@ -15,7 +15,6 @@
       <script src="js/respond.min.js"></script>
     <![endif]-->
     <script src="js/echarts.common.min.js" charset="utf-8"></script>
-
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -36,50 +35,62 @@
                 <div class="top margin-bottom-10">
                     <div class="row">
                         <div class="content_info_overview">
-                            <div class="total-block">
+                            <div class="total-block_tbtc">
                                 <div class="total-block-title">
-                                    <h2>KEEP Token Dashboard</h2>
+                                    <h2>tBTC Token Dashboard</h2>
                                 </div>
                                 <div class="row margin-top-20 margin-bottom-20" style="clear:both;">
                                     <div class="col-md-4">
                                         <p class="p_text">
                                             SYMBOL
                                         </p>
-                                        <p id="symbol" class="p_sub_value_1">0
+                                        <p id="tbtc_symbol" class="p_sub_value_1">0
                                         </p>
                                     </div>
                                     <div class="col-md-4">
                                         <p class="p_text">
                                             CONTRACT
                                         </p>
-                                        <p id="contract" class="p_sub_value_1">0
+                                        <p id="tbtc_contract" class="p_sub_value_1">0
                                         </p>
                                     </div>
                                     <div class="col-md-4">
                                         <p class="p_text">
                                             DECIMALS
                                         </p>
-                                        <p id="decimals" class="p_sub_value_1">0
+                                        <p id="tbtc_decimals" class="p_sub_value_1">0
                                         </p>
                                     </div>
                                 </div>
                                 <div class="row margin-top-20">
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <p class="p_sub_text">
                                             Max Supply</p>
-                                        <p id="max_supply" class="p_sub_value">
+                                        <p id="tbtc_max_supply" class="p_sub_value">
                                         </p>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <p class="p_sub_text">
                                             Current circulation</p>
-                                        <p id="current_circulation" class=" p_sub_value">264,144,000
+                                        <p id="tbtc_current_circulation" class=" p_sub_value">
                                         </p>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <p class="p_sub_text">
-                                            Total Staking</p>
-                                        <p id="total_staking" class="burned p_sub_value">0
+                                            Total Mint</p>
+                                        <p id="tbtc_total_mint" class="burned p_sub_value">0
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p class="p_sub_text">
+                                            Total Burn</p>
+                                        <p id="tbtc_total_burn" class="burned p_sub_value">0
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p class="p_sub_text">
+                                            Total Bonded</p>
+                                        <p id="tbtc_total_bonded" class="burned p_sub_value">0
                                         </p>
                                     </div>
                                 </div>
@@ -109,29 +120,30 @@
                         </div>
                         <div class="col-md-6 staking_block">
                             <div class="list-head list-right">
-                                <div class="pull-left block-icon">Staking Transaction</div>
+                                <div class="pull-left block-icon">Bonded Transaction</div>
                             </div>
-                            <div class="list-body" id="staking_transaction">
+                            <div class="list-body" id="bonded_transaction">
                             </div>
                         </div>
                         <div class="col-md-6 staking_block">
                             <div class="list-head list-right">
-                                <div class="pull-left block-icon">TOP Staking</div>
+                                <div class="pull-left block-icon">Mint Transaction</div>
                             </div>
-                            <div class="list-body" id="staking_top">
+                            <div class="list-body" id="mint_transaction">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-        <footer class="page-footer dark footer-content"></footer>
+    </div>
+    </main>
+    <footer class="page-footer dark footer-content"></footer>
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/common.js?v" charset="utf-8"></script>
     <script src="js/address.js" charset="utf-8"></script>
-    <script src="js/index.js?v5" charset="utf-8"></script>
+    <script src="js/tbtc.js?v5" charset="utf-8"></script>
 </body>
 
 </html>

@@ -9,6 +9,12 @@
     border-radius: 0
 }
 
+.main-content .total-block_tbtc {
+    background: #ca5f37;
+    padding: 20px;
+    border-radius: 0
+}
+
 .main-content .global-img {
     width: 50px;
     height: 50px;

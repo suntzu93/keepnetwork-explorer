@@ -20,7 +20,7 @@ $(function() {
                 '<div class="collapse navbar-collapse" id="navcol-1">' +
                 '<ul class="nav navbar-nav ml-auto changeActive">' +
                 '<li class="nav-item" role="presentation">' +
-                '<a class="nav-link text-monospace" href="index.html" style="font-family:Montserrat, sans-serif;">tBTC</a>' +
+                '<a class="nav-link text-monospace" href="tbtc.html" style="font-family:Montserrat, sans-serif;">tBTC</a>' +
                 '</li>' +
                 '</ul>' +
                 '<form class="navbar-form navbar-left" role="search">' +
