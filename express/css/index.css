@@ -239,3 +239,7 @@
 .staking_block {
     margin-top: 20px;
 }
+
+.balance {
+    color: black;
+}

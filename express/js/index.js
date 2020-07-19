@@ -9,8 +9,7 @@ $(function() {
             this.getTxsInfo();
             this.getTopHolders();
             this.getTxsStaking();
-            // this.getTopStaking();
-            // this.getCount();
+            this.getTopStaking();
         },
         getTxsInfo: function() {
             var that = this;
@@ -84,7 +83,7 @@ $(function() {
                                 }
                                 var wallet = tokenHolders[i].id;
                                 var balance = addCommas(parseFloat(tokenHolders[i].tokenBalance).toFixed(1));
-                                var percent = parseFloat(tokenHolders[i].tokenBalance) / 1000000000;
+                                var percent = parseFloat(tokenHolders[i].tokenBalance) / 1000000000 * 100;
                                 percent = percent.toFixed(5);
                                 txnsStr += `<div class="profile-post">
                                             <div class="data-formats-post pull-left">
@@ -92,8 +91,8 @@ $(function() {
                                             </div>
                                             <div class="block-detail-post pull-left">
                                               <div class="trans-hash">Wallet# <a target="_blank" href="${etherWalletAdress}${wallet}" class="to-trans-hash">${wallet}</a></div>
-                                                <p class="p-to-p">Balance ${balance}</p>
-                                                <p class="total-price">Percent ${percent} %</p>
+                                                <span class="p-to-p">Balance <span class="balance">${balance} KEEP</span></span>
+                                                <br><span class="total-price">Percent <span class="balance">${percent} %</span></span>
                                             </div>
                                            </div>`
                             }
@@ -157,41 +156,38 @@ $(function() {
         },
         getTopStaking: function() {
             var that = this;
-            var param = {
-                biz: {
-
-                },
-                page: {
-                    page_no: 1,
-                    page_size: 10,
-                }
-            }
+            var param = '{"query":"{\
+                            tokenStakings{ \
+                                totalTokenStaking \
+                            } \
+                            members(first: 10, where: {stakingState: STAKED},orderBy:amount,orderDirection:desc) {\
+                                    id  \
+                                    amount\
+                            }}","variables":null}';
             $.ajax({
                 type: "POST",
                 url: `${keep_thegraph}`,
-                dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify(param),
+                data: param,
                 success: function(res) {
-                    if (res.base.code === 'SUCCESS') {
-                        var txnsData = res.biz.transactions;
+                    if (res != null) {
+                        var members = res.data.members;
                         var txnsStr = '';
-                        if (txnsData == null) {
+                        var totalStaking = parseFloat(res.data.tokenStakings[0].totalTokenStaking);
+                        if (members != null) {
+                            for (var i = 0; i < members.length; i++) {
+                                var amount = parseFloat(members[i].amount);
+                                var wallet = members[i].id;
+                                var percent = amount / totalStaking * 100;
 
-                        } else {
-                            for (var i = 0; i < txnsData.length; i++) {
-                                var value = txnsData[i].value;
-                                if (value === '') {
-                                    value = '0'
-                                }
                                 txnsStr += `<div class="profile-post">
                                         <div class="data-formats-post pull-left">
                                           <img src="assets/img/transaction.png" alt="">
                                         </div>
                                         <div class="block-detail-post pull-left">
-                                          <div class="trans-hash">TX# <a href="txsInfo.html?hash=${txnsData[i].hash}" class="to-trans-hash">${txnsData[i].hash}</a></div>
-                                            <p class="p-to-p">From <a href="accountInfo.html?hash=${txnsData[i].from}&miner=false">${txnsData[i].from}</a></p>
-                                          <p class="total-price">Amount ${value} KEEP</p>
+                                              <div class="trans-hash">Wallet# <a target="_blank" href="${etherWalletAdress}${wallet}" class="to-trans-hash">${wallet}</a></div>
+                                                <span class="p-to-p">Balance <span class="balance">${amount} KEEP</span></span>
+                                                <br><span class="total-price">Percent <span class="balance">${percent.toFixed(2)} %</span></span>
                                         </div>
                                        </div>`
                             }
