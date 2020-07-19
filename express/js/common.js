@@ -106,48 +106,8 @@ $(function() {
         },
         insertFooter: function() {
             var footerStr = '<div class="footer-copyright">' +
-                '<footer class="page-footer dark" style="background-color:rgb(83,92,103);">' +
-                '<div class="container">' +
-                '<div class="row">' +
-                '<div class="col-sm-3">' +
-                '<h5>Get started</h5>' +
-                '<ul>' +
-                '<li><a href="https://sero.cash/index.html">Home</a></li>' +
-                '<li><a href="https://sero.cash/tech.html">Tech</a></li>' +
-                '<li><a href="https://sero.cash/whitepaper-eng.html">White Paper</a></li>' +
-                '</ul>' +
-                '</div>' +
-                '<div class="col-sm-3">' +
-                '<h5>About us</h5>' +
-                '<ul>' +
-                '<li><a href="https://sero.cash/index.html#teamgroup">Team</a></li>' +
-                '<li><a href="https://sero.cash/contact.html">Contact us</a></li>' +
-
-                '</ul>' +
-                '</div>' +
-                '<div class="col-sm-3">' +
-                '<h5>Community</h5>' +
-                '<ul>' +
-                '<li><a href="https://t.me/SeroOfficial" target="_blank">Telegram</a></li>' +
-                '<li><a href="https://twitter.com/SEROdotCASH" target="_blank">Twitter</a></li>' +
-                '<li><a href="https://www.youtube.com/c/SEROdotCASH" target="_blank">Youtube</a></li>' +
-                '<li><a href="https://github.com/sero-cash" target="_blank">Github</a></li>' +
-                '<li><a href="https://wiki.sero.cash/" target="_blank">Wiki</a></li>' +
-                '</ul>' +
-                '</div>' +
-                '<div class="col-sm-3">' +
-                '<h5>Partner</h5>' +
-                '<ul>' +
-                '<li><a href="#">Matter Global</a></li>' +
-                '<li><a href="http://www.guevaralabs.com">Guevaralabs</a></li>' +
-                '</ul>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '<div class="footer-copyright">' +
-                '<p>© 2019 The SERO Network</p>' +
-                '</div>' +
-                '</footer>' +
+                '<a href="https://chat.tbtc.network/" target="_blank">KEEP Network Discord</a>' +
+                '<p>@ 2020 Contributed by SunTzu#1022</p>' +
                 '</div>'
             $('.footer-content').append(footerStr);
         },

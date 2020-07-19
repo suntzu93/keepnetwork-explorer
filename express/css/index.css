@@ -191,6 +191,7 @@
     font-size: 16px;
     margin-bottom: 0rem;
     opacity: 0.8;
+    text-align: center;
 }
 
 .p_sub_text {
@@ -198,18 +199,21 @@
     font-size: 12px;
     margin-bottom: 0rem;
     opacity: 0.8;
+    text-align: center;
 }
 
 .p_sub_value {
     color: white;
     font-size: 12px;
     margin-bottom: 0rem;
+    text-align: center;
 }
 
 .p_sub_value_1 {
     color: white;
     font-size: 16px;
-    margin-bottom: 0rem
+    margin-bottom: 0rem;
+    text-align: center;
 }
 
 .p_title {
@@ -217,4 +221,17 @@
     font-size: 12px;
     margin-bottom: .5rem;
     opacity: 0.8;
+}
+
+.content_info_overview {
+    width: 100%;
+}
+
+.total-block-title {
+    text-align: left;
+    font-family: Poppins;
+    font-size: 34px;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
 }
