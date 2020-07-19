@@ -182,7 +182,7 @@ $(function() {
 
                                 txnsStr += `<div class="profile-post">
                                         <div class="data-formats-post pull-left">
-                                          <img src="assets/img/transaction.png" alt="">
+                                          <img src="assets/img/wallet.png" alt="">
                                         </div>
                                         <div class="block-detail-post pull-left">
                                               <div class="trans-hash">Wallet# <a target="_blank" href="${etherWalletAdress}${wallet}" class="to-trans-hash">${wallet}</a></div>
