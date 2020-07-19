@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SERO Explorer</title>
+    <title>KEEP Explorer</title>
     <link rel="icon" href="assets/img/logo.png">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/common.css" rel="stylesheet">
@@ -46,41 +46,41 @@
                                         <p class="p_text">
                                             SYMBOL
                                         </p>
-                                        <p class="blockCount p_sub_value_1">0
+                                        <p id="symbol" class="p_sub_value_1">0
                                         </p>
                                     </div>
                                     <div class="col-md-4">
                                         <p class="p_text">
                                             CONTRACT
                                         </p>
-                                        <p class="transCount p_sub_value_1">0
+                                        <p id="contract" class="p_sub_value_1">0
                                         </p>
                                     </div>
                                     <div class="col-md-4">
                                         <p class="p_text">
                                             DECIMALS
                                         </p>
-                                        <p class="tokensCount p_sub_value_1">0
+                                        <p id="decimals" class="p_sub_value_1">0
                                         </p>
                                     </div>
                                 </div>
                                 <div class="row margin-top-20">
                                     <div class="col-md-4">
                                         <p class="p_sub_text">
-                                            Planned circulation</p>
-                                        <p class="pcirculation p_sub_value">0
+                                            Max Supply</p>
+                                        <p id="max_supply" class="p_sub_value">
                                         </p>
                                     </div>
                                     <div class="col-md-4">
                                         <p class="p_sub_text">
                                             Current circulation</p>
-                                        <p class="circulation p_sub_value">0
+                                        <p id="current_circulation" class=" p_sub_value">264,144,000
                                         </p>
                                     </div>
                                     <div class="col-md-4">
                                         <p class="p_sub_text">
-                                            Coin burned</p>
-                                        <p class="burned p_sub_value">0
+                                            Total Staking</p>
+                                        <p id="total_staking" class="burned p_sub_value">0
                                         </p>
                                     </div>
                                 </div>
@@ -98,28 +98,28 @@
                             <div class="list-head list-right">
                                 <div class="pull-left block-icon">Transaction</div>
                             </div>
-                            <div class="list-body list-body-right">
+                            <div class="list-body " id="transaction">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="list-head list-right">
-                                <div class="pull-left block-icon">Transaction</div>
+                                <div class="pull-left block-icon">TOP Holders</div>
                             </div>
-                            <div class="list-body list-body-right">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="list-head list-right">
-                                <div class="pull-left block-icon">Transaction</div>
-                            </div>
-                            <div class="list-body list-body-right">
+                            <div class="list-body" id="top_holder">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 staking_block">
                             <div class="list-head list-right">
-                                <div class="pull-left block-icon">Transaction</div>
+                                <div class="pull-left block-icon">Staking Transaction</div>
                             </div>
-                            <div class="list-body list-body-right">
+                            <div class="list-body" id="staking_transaction">
+                            </div>
+                        </div>
+                        <div class="col-md-6 staking_block">
+                            <div class="list-head list-right">
+                                <div class="pull-left block-icon">TOP Staking</div>
+                            </div>
+                            <div class="list-body" id="staking_top">
                             </div>
                         </div>
                     </div>

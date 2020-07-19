@@ -1,13 +1,161 @@
 $(function() {
-    var cUrl = address.testUrl;
+    var keep_thegraph = address.keep_thegraph;
+    var etherTxAddres = address.etherTxAddres;
+    var etherWalletAdress = address.etherWalletAdress;
     var index = {
         init: function() {
             var that = this;
-            this.getTxsInfo();
-            this.getCount();
             this.getCirculation();
+            this.getTxsInfo();
+            this.getTopHolders();
+            this.getTxsStaking();
+            // this.getTopStaking();
+            // this.getCount();
         },
         getTxsInfo: function() {
+            var that = this;
+            var param = '{"query":"{ \
+                           transfers(first: 10, orderBy: timestamp, orderDirection: desc) { \
+                             id         \
+                             timestamp  \
+                             value      \
+                             from       \
+                           } \
+                          } ","variables":null}';
+            $.ajax({
+                type: "POST",
+                url: `${keep_thegraph}`,
+                contentType: "application/json",
+                data: param,
+                success: function(res) {
+                    if (res != null) {
+                        var txnsData = res.data.transfers;
+                        var txnsStr = '';
+                        if (txnsData != null) {
+                            for (var i = 0; i < txnsData.length; i++) {
+                                var value = txnsData[i].value;
+                                if (value === '') {
+                                    value = '0'
+                                }
+                                var txHash = txnsData[i].id;
+                                var fromAdds = txnsData[i].from;
+                                txnsStr += `<div class="profile-post">
+                                              <div class="data-formats-post pull-left">
+                                                <img src="assets/img/transaction.png" alt="">
+                                              </div>
+                                              <div class="block-detail-post pull-left">
+                                                <div class="trans-hash">TX# <a target="_blank" href="${etherTxAddres}${txHash}" class="to-trans-hash">${txHash}</a></div>
+                                                  <p class="p-to-p">From <a target="_blank" href="${etherWalletAdress}${fromAdds}">${fromAdds}</a></p>
+                                                <p class="total-price">Amount ${parseFloat(value).toFixed(2)} KEEP</p>
+                                              </div>
+                                             </div>`
+                            }
+                            $('#transaction').html(txnsStr);
+                        }
+                    }
+                },
+                error: function(error) {
+                    console.info(error.statusText);
+                }
+            });
+        },
+        getTopHolders: function() {
+            var that = this;
+            var param = '{"query":"{    \
+                            tokenHolders(first: 10, orderBy: tokenBalanceRaw, orderDirection: desc) {\
+                              id              \
+                              tokenBalance    \
+                            }               \
+                            }","variables":null}';
+            $.ajax({
+                type: "POST",
+                url: `${keep_thegraph}`,
+                contentType: "application/json; charset=utf-8",
+                data: param,
+                success: function(res) {
+                    if (res != null) {
+                        var tokenHolders = res.data.tokenHolders;
+                        var txnsStr = '';
+                        if (tokenHolders != null) {
+                            for (var i = 0; i < tokenHolders.length; i++) {
+                                var value = tokenHolders[i].value;
+                                if (value === '') {
+                                    value = '0'
+                                }
+                                var wallet = tokenHolders[i].id;
+                                var balance = addCommas(parseFloat(tokenHolders[i].tokenBalance).toFixed(1));
+                                var percent = parseFloat(tokenHolders[i].tokenBalance) / 1000000000;
+                                percent = percent.toFixed(5);
+                                txnsStr += `<div class="profile-post">
+                                            <div class="data-formats-post pull-left">
+                                              <img src="assets/img/wallet.png" alt="">
+                                            </div>
+                                            <div class="block-detail-post pull-left">
+                                              <div class="trans-hash">Wallet# <a target="_blank" href="${etherWalletAdress}${wallet}" class="to-trans-hash">${wallet}</a></div>
+                                                <p class="p-to-p">Balance ${balance}</p>
+                                                <p class="total-price">Percent ${percent} %</p>
+                                            </div>
+                                           </div>`
+                            }
+                            $('#top_holder').html(txnsStr);
+                        }
+                    }
+                },
+                error: function(error) {
+                    console.info(error.statusText);
+                }
+            });
+        },
+        getTxsStaking: function() {
+            var that = this;
+            var param = '{"query":"{  \
+                            transactionStakings (first:10,where:{transactionType:STAKED}, orderBy:timestamp,orderDirection:desc){\
+                                id,     \
+                                from,   \
+                                to,     \
+                                value   \
+                            }}","variables":null}';
+            $.ajax({
+                type: "POST",
+                url: `${keep_thegraph}`,
+                contentType: "application/json; charset=utf-8",
+                data: param,
+                success: function(res) {
+                    if (res != null) {
+                        var txnsData = res.data.transactionStakings;
+                        var txnsStr = '';
+                        if (txnsData == null) {
+
+                        } else {
+                            for (var i = 0; i < txnsData.length; i++) {
+                                var value = txnsData[i].value;
+                                if (value === '') {
+                                    value = '0'
+                                }
+                                var txHash = txnsData[i].id;
+                                var from = txnsData[i].from;
+                                var value = addCommas(txnsData[i].value);
+                                txnsStr += `<div class="profile-post">
+                                          <div class="data-formats-post pull-left">
+                                            <img src="assets/img/transaction.png" alt="">
+                                          </div>
+                                          <div class="block-detail-post pull-left">
+                                            <div class="trans-hash">TX# <a target="_blank" href="${etherTxAddres}${txHash}" class="to-trans-hash">${txHash}</a></div>
+                                              <p class="p-to-p">From <a target="_blank" href="${etherWalletAdress}${from}&miner=false">${from}</a></p>
+                                            <p class="total-price">Amount ${value} KEEP</p>
+                                          </div>
+                                         </div>`
+                            }
+                            $('#staking_transaction').html(txnsStr);
+                        }
+                    }
+                },
+                error: function(error) {
+                    console.info(error.statusText);
+                }
+            });
+        },
+        getTopStaking: function() {
             var that = this;
             var param = {
                 biz: {
@@ -20,7 +168,7 @@ $(function() {
             }
             $.ajax({
                 type: "POST",
-                url: `${cUrl}/transactions`,
+                url: `${keep_thegraph}`,
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(param),
@@ -37,17 +185,17 @@ $(function() {
                                     value = '0'
                                 }
                                 txnsStr += `<div class="profile-post">
-                            <div class="data-formats-post pull-left">
-                              <img src="assets/img/transaction.png" alt="">
-                            </div>
-                            <div class="block-detail-post pull-left">
-                              <div class="trans-hash">TX# <a href="txsInfo.html?hash=${txnsData[i].hash}" class="to-trans-hash">${txnsData[i].hash}</a></div>
-                              <p class="p-to-p">From <a href="accountInfo.html?hash=${txnsData[i].from}&miner=false">${txnsData[i].from}</a></p>
-                              <p class="total-price">Amount ${value} SERO</p>
-                            </div>
-                          </div>`
+                                        <div class="data-formats-post pull-left">
+                                          <img src="assets/img/transaction.png" alt="">
+                                        </div>
+                                        <div class="block-detail-post pull-left">
+                                          <div class="trans-hash">TX# <a href="txsInfo.html?hash=${txnsData[i].hash}" class="to-trans-hash">${txnsData[i].hash}</a></div>
+                                            <p class="p-to-p">From <a href="accountInfo.html?hash=${txnsData[i].from}&miner=false">${txnsData[i].from}</a></p>
+                                          <p class="total-price">Amount ${value} KEEP</p>
+                                        </div>
+                                       </div>`
                             }
-                            $('.list-body-right').html(txnsStr);
+                            $('#staking_top').html(txnsStr);
                         }
                     }
                 },
@@ -64,15 +212,15 @@ $(function() {
             }
             $.ajax({
                 type: "POST",
-                url: `${cUrl}/block/count`,
+                url: `${keep_thegraph}`,
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(param),
                 success: function(res) {
                     if (res.base.code === 'SUCCESS') {
-                        $('.blockCount').html(res.biz.blockCount)
-                        $('.transCount').html(res.biz.blockCount)
-                        $('.tokensCount').html(res.biz.blockCount)
+                        $('#symbol').html(res.biz.blockCount)
+                        $('#contract').html(res.biz.blockCount)
+                        $('#decimasl').html(res.biz.blockCount)
                     }
                 },
                 error: function(error) {
@@ -81,29 +229,54 @@ $(function() {
             });
         },
         getCirculation: function() {
-            var param = {
-                biz: {
-
-                }
-            }
+            var param = '{"query":"{ \
+                            governances{ \
+                                symbol,  \
+                                maxSupply, \
+                                contractAddress,\
+                                decimals\
+                            }\
+                            tokenStakings{\
+                                totalTokenStaking \
+                            }}","variables":null\
+                        }';
             $.ajax({
                 type: "POST",
-                url: `${cUrl}/circulation`,
-                dataType: "json",
+                url: `${keep_thegraph}`,
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify(param),
+                data: param,
                 success: function(res) {
-                    $('.pcirculation').html(res.planned_circulation)
-                    $('.circulation').html(res.actual_circulation)
-                    var burned = res.planned_circulation - res.actual_circulation;
-                    $('.burned').html(burned)
-
+                    if (res != null) {
+                        var governances = res.data.governances[0];
+                        var tokenStakings = res.data.tokenStakings[0];
+                        if (governances != null) {
+                            $('#symbol').html(governances.symbol);
+                            $('#contract').html(governances.contractAddress);
+                            $('#decimals').html(governances.decimals);
+                            $('#max_supply').html(addCommas(governances.maxSupply));
+                        }
+                        if (tokenStakings != null) {
+                            $('#total_staking').html(addCommas(tokenStakings.totalTokenStaking));
+                        }
+                    }
                 },
                 error: function(error) {
                     console.info(error.statusText);
                 }
             });
         }
+    }
+
+    function addCommas(nStr) {
+        nStr += '';
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        }
+        return x1 + x2;
     }
     index.init();
 

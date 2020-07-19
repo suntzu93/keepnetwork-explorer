@@ -1,1 +1,6 @@
-var address={testUrl:"https://explorerapi.sero.cash",productUrl:"http://explorer.api.alpha.sero.cash",}
+var address = {
+    keep_thegraph: "https://api.thegraph.com/subgraphs/name/suntzu93/keepnetwork",
+    tbtc_thegraph: "https://api.thegraph.com/subgraphs/name/suntzu93/tbtc",
+    etherTxAddres: "https://etherscan.io/tx/",
+    etherWalletAdress: "https://etherscan.io/address/"
+}

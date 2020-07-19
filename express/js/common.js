@@ -1,5 +1,5 @@
 $(function() {
-    var cUrl = address.testUrl;
+    var keep_thegraph = address.keep_thegraph;
     var common = {
         init: function() {
             this.insertNav();
@@ -11,7 +11,7 @@ $(function() {
             var commonNavStr = '<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">' +
                 '<div class="container">' +
                 '<a class="navbar-brand logo" href="index.html" style="font-family:' + "'Nova Flat'" + ', cursive;font-weight:normal;font-style:normal;">' +
-                '<img src="assets/img/logo.png">&nbsp; KEEP' +
+                '<img src="assets/img/logo.png">&nbsp; KEEP Network' +
                 '</a>' +
                 '<button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">' +
                 '<span class="sr-only">Toggle navigation</span>' +
@@ -66,7 +66,7 @@ $(function() {
                         }
                         $.ajax({
                             type: "POST",
-                            url: `${cUrl}/transaction`,
+                            url: `${keep_thegraph}/transaction`,
                             dataType: "json",
                             contentType: "application/json; charset=utf-8",
                             data: JSON.stringify(param),
@@ -81,7 +81,7 @@ $(function() {
                                     }
                                     $.ajax({
                                         type: "POST",
-                                        url: `${cUrl}/block`,
+                                        url: `${keep_thegraph}/block`,
                                         dataType: "json",
                                         contentType: "application/json; charset=utf-8",
                                         data: JSON.stringify(param1),
