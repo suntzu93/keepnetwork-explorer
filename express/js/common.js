@@ -17,7 +17,7 @@ $(function() {
                 '<span class="sr-only">Toggle navigation</span>' +
                 '<span class="navbar-toggler-icon"></span>' +
                 '</button>' +
-                '<div class="collapse navbar-collapse" id="navcol-1">' +
+                               '<div class="collapse navbar-collapse" id="navcol-1">' +
                 '<ul class="nav navbar-nav ml-auto changeActive">' +
                 '<li class="nav-item" role="presentation">' +
                 '<a class="nav-link text-monospace" href="tbtc.html" style="font-family:Montserrat, sans-serif;">tBTC</a>' +
@@ -55,53 +55,13 @@ $(function() {
         searchByHash: function(hash) {
             var that = this;
             if (hash != '') {
-                if (hash.length == 88) {
-                    window.location.href = 'txs.html?constractAd=' + hash
-                } else {
-                    if (hash.length == 66) {
-                        var param = {
-                            biz: {
-                                txHash: hash,
-                            }
-                        }
-                        $.ajax({
-                            type: "POST",
-                            url: `${keep_thegraph}/transaction`,
-                            dataType: "json",
-                            contentType: "application/json; charset=utf-8",
-                            data: JSON.stringify(param),
-                            success: function(res) {
-                                if (res.base.code === 'SUCCESS') {
-                                    window.location.href = 'txsInfo.html?hash=' + hash
-                                } else {
-                                    var param1 = {
-                                        biz: {
-                                            blockHash: hash,
-                                        }
-                                    }
-                                    $.ajax({
-                                        type: "POST",
-                                        url: `${keep_thegraph}/block`,
-                                        dataType: "json",
-                                        contentType: "application/json; charset=utf-8",
-                                        data: JSON.stringify(param1),
-                                        success: function(res) {
-                                            if (res.base.code === 'SUCCESS') {
-                                                window.location.href = 'blockInfo.html?hash=' + hash
-                                            }
-                                        },
-                                        error: function(error) {
-                                            console.info(error.statusText);
-                                        }
-                                    });
-                                }
-                            },
-                            error: function(error) {
-                                console.info(error.statusText);
-                            }
-                        });
-                    }
-                }
+                if (hash.length == 66) {
+                    window.open('https://etherscan.io/tx/' + hash);
+                } else if(hash.length == 42){
+                    window.open('https://etherscan.io/token/0x85Eee30c52B0b379b046Fb0F85F4f3Dc3009aFEC?a=' + hash);
+                }else if (hash.length == 8) {
+                    window.open('https://etherscan.io/block/' + hash);
+                };
             }
         },
         insertFooter: function() {
