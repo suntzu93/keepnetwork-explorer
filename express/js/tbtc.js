@@ -60,7 +60,7 @@ $(function() {
         getTopHolders: function() {
             var that = this;
             var param = '{"query":"{    \
-                            tokenHolders(first: 10, orderBy: tokenBalanceRaw, orderDirection: desc) {\
+                            tokenHolders(first: 20, orderBy: tokenBalanceRaw, orderDirection: desc) {\
                               id              \
                               tokenBalance    \
                             }               \
@@ -82,7 +82,8 @@ $(function() {
                                 }
                                 var wallet = tokenHolders[i].id;
                                 var balance = addCommas(parseFloat(tokenHolders[i].tokenBalance).toFixed(7));
-                                var percent = parseFloat(tokenHolders[i].tokenBalance) / 1000000000 * 100;
+                                var circle = document.getElementById("tbtc_current_circulation").textContent.replace(" tBTC","");
+                                var percent = parseFloat(tokenHolders[i].tokenBalance) / circle * 100;
                                 percent = percent.toFixed(5);
                                 txnsStr += `<div class="profile-post">
                                             <div class="data-formats-post pull-left">
@@ -163,7 +164,6 @@ $(function() {
                                     id\
                                 }\
                                 keepAddress\
-                                bondAmount\
                                 state\
                             } \
                         }","variables":null}';
@@ -179,7 +179,6 @@ $(function() {
                         var totalStaking = parseFloat(res.data.bondedECDSAKeeps[0].totalTokenStaking);
                         if (bondedECDSAKeeps != null) {
                             for (var i = 0; i < bondedECDSAKeeps.length; i++) {
-                                var amount = parseFloat(bondedECDSAKeeps[i].bondAmount);
                                 var wallet = bondedECDSAKeeps[i].keepAddress;
                                 var state = bondedECDSAKeeps[i].state;
                                 var txHash = bondedECDSAKeeps[i].transaction.id;
@@ -191,7 +190,6 @@ $(function() {
                                                 <div class="block-detail-post pull-left">
                                                 <div class="trans-hash">TX# <a target="_blank" href="${etherTxAddres}${txHash}" class="to-trans-hash">${txHash}</a></div>
                                                     <p class="p-to-p">To <a target="_blank" href="${etherWalletAdress}${wallet}">${wallet}</a></p>
-                                                <p class="total-price">Amount ${parseFloat(amount).toFixed(7)} ETH</p>
                                                 <p class="total-price">State ${state} </p>
                                                 </div>
                                             </div>`
@@ -241,7 +239,9 @@ $(function() {
                                 totalMint   \
                              } \
                              totalBondedECDSAKeeps{ \
-                                totalAmount \
+                                totalAvailable \
+                                totalBonded \
+                                totalKeepActive \
                               } \
                         }","variables":null}';
             $.ajax({
@@ -263,8 +263,9 @@ $(function() {
                             $('#tbtc_current_circulation').html(addCommas(tbtctokens.totalSupply) + " tBTC");
                             $('#tbtc_total_mint').html(addCommas(tbtctokens.totalMint) + " tBTC");
                             $('#tbtc_total_burn').html(addCommas(tbtctokens.totalBurn) + " tBTC");
-                            $('#tbtc_total_bonded').html(addCommas(addCommas(totalBondedECDSAKeeps.totalAmount)) + " ETH");
-
+                            $('#tbtc_total_available').html(addCommas(addCommas(totalBondedECDSAKeeps.totalAvailable)) + " ETH");
+                            $('#tbtc_total_bonded').html(addCommas(addCommas(totalBondedECDSAKeeps.totalBonded)) + " ETH");
+                            $('#tbtc_total_keep_active').html(addCommas(addCommas(totalBondedECDSAKeeps.totalKeepActive)) + " Address");
                         }
                     }
                 },
